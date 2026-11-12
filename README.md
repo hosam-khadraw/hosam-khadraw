@@ -6,15 +6,8 @@
 ========================================================== -->
 
 <!-- HEADER BANNER -->
-<p align="center">
-  <img
-    src="assets/github-banner.png"
-    alt="Embedded Systems | IoT | Edge AI | Robotics"
-    width="100%"
-  />
-</p>
 
-# Hi there, I'm Hosam Khadrawi! 👋
+# Hi there, I'm Hosam Khadrawi ! 👋
 
 <!-- Theme-Sensitive Header Banner -->
 <picture>
