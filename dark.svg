@@ -88,8 +88,8 @@
 
   <g opacity="0">
     <animate attributeName="opacity" from="0" to="1" dur=".4s" begin=".5s" fill="freeze"/>
-    <text x="490" y="115" fill="#9BB3CC" font-size="15" class="font-mono">const greeting = <tspan fill="#00C2FF">"Hello, world!"</tspan>;</text>
-  </g>
+
+   </g>
   <g opacity="0">
     <animate attributeName="opacity" from="0" to="1" dur=".4s" begin=".9s" fill="freeze"/>
     <text x="490" y="155" fill="#F3F8FF" font-size="32" font-weight="800" class="font-sans">I'm <tspan fill="url(#accentGradient)">Houssem Khadhraoui</tspan></text>
