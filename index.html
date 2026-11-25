@@ -104,6 +104,69 @@ footer{padding:2rem 0;color:var(--dim);font-size:.9rem;border-top:1px solid var(
   .about,.skills,.cols,.proj{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.frame,.tilt{transition:none;transform:none!important}}
+
+/* custom cursor */
+.has-cursor,.has-cursor a,.has-cursor button{cursor:none}
+.cur{position:fixed;left:0;top:0;pointer-events:none;z-index:100;border-radius:50%;opacity:0;transition:opacity .2s}
+.cur.on{opacity:1}
+.cur-dot{width:8px;height:8px;margin:-4px 0 0 -4px;background:var(--ice);box-shadow:0 0 12px var(--cyan)}
+.cur-ring{width:38px;height:38px;margin:-19px 0 0 -19px;border:1.5px solid var(--cyan);
+  transition:width .2s,height .2s,margin .2s,background .2s,opacity .2s}
+.cur-ring.hot{width:64px;height:64px;margin:-32px 0 0 -32px;background:rgba(0,194,255,.12)}
+.cur-ring.down{width:26px;height:26px;margin:-13px 0 0 -13px}
+.trail{width:6px;height:6px;margin:-3px 0 0 -3px;background:var(--blue);box-shadow:0 0 10px var(--blue)}
+/* typing line */
+.role .prompt{color:var(--dim)}
+.caret{display:inline-block;width:.55em;height:1.05em;margin-left:3px;vertical-align:-.15em;background:var(--cyan);animation:blink .8s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.caret{animation:none}}
+
+.eyebrow{font:600 .95rem var(--mono);color:var(--cyan);margin-bottom:.6rem}
+.sgroup{margin-bottom:2rem}
+.sub{font:600 .95rem var(--mono);color:var(--dim);margin-bottom:.8rem}
+.pills{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.6rem}
+.pills li{padding:.45rem 1rem;border:1px solid rgba(22,119,255,.55);border-radius:10px;background:#0B2038;font-size:.92rem;font-weight:600;
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s;cursor:default}
+.pills li:hover{transform:scale(1.07);border-color:var(--cyan);box-shadow:0 0 14px rgba(0,194,255,.45)}
+
+/* skills: centered, blue, with icons */
+#skills .wrap{text-align:left}
+#skills h2{display:inline-block}
+.sub{color:var(--blue)!important;font-size:1rem}
+.pills{justify-content:flex-start}
+.pills li{display:inline-flex;align-items:center;gap:.5rem;background:rgba(22,119,255,.16);border-color:var(--blue);color:#fff}
+.pills li:hover{background:rgba(22,119,255,.3)}
+.pills .ic{width:18px;height:18px;flex:none;color:var(--ice)}
+
+/* 3D radar + line charts */
+.about>div:first-child{position:sticky;top:5rem}
+.lab .sub{margin-bottom:.4rem}
+.radar{position:relative;border-radius:18px;border:1px solid var(--line);background:radial-gradient(70% 70% at 50% 45%,rgba(22,119,255,.18),rgba(3,11,24,.6));box-shadow:0 20px 60px -30px rgba(0,194,255,.5)}
+#radar{display:block;width:100%;touch-action:pan-y;cursor:grab}
+#radar:active{cursor:grabbing}
+.hint{font:500 .82rem var(--mono);color:var(--dim);margin:.7rem 0 1.8rem}
+.bar{display:grid;grid-template-columns:13rem 1fr 3rem;gap:1rem;align-items:center;margin:1.15rem 0}
+.bl{font-weight:600;font-size:.95rem}
+.bv{font:600 .95rem var(--mono);color:var(--ice);text-align:right}
+.line{position:relative;height:2px;background:rgba(22,119,255,.28)}
+.line::before{content:"";position:absolute;left:0;right:0;top:-5px;height:12px;pointer-events:none;
+  background:repeating-linear-gradient(90deg,rgba(66,217,255,.55) 0 1px,transparent 1px 25%);border-right:1px solid rgba(66,217,255,.55)}
+.fill{position:absolute;left:0;top:-1px;height:4px;width:0;border-radius:4px;
+  background:linear-gradient(90deg,var(--blue),var(--ice));
+  box-shadow:0 0 10px var(--cyan),0 0 26px rgba(22,119,255,.75);
+  transition:width 1.5s cubic-bezier(.2,.8,.2,1);overflow:visible}
+.fill::after{content:"";position:absolute;right:-6px;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;
+  background:#fff;box-shadow:0 0 0 3px rgba(0,194,255,.45),0 0 16px var(--cyan)}
+.fill::before{content:"";position:absolute;inset:0;border-radius:4px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);background-size:40% 100%;background-repeat:no-repeat;
+  animation:sweep 2.4s linear infinite}
+@keyframes sweep{from{background-position:-60% 0}to{background-position:160% 0}}
+@media (max-width:820px){
+  .about>div:first-child{position:static}
+  .bar{grid-template-columns:1fr auto;row-gap:.5rem}
+  .bar .line{grid-column:1/-1;order:3}
+}
+@media (prefers-reduced-motion:reduce){.fill::before{animation:none}.fill{transition:none}}
 </style>
 </head>
 <body>
@@ -114,9 +177,9 @@ footer{padding:2rem 0;color:var(--dim);font-size:.9rem;border-top:1px solid var(
   <div class="wrap">
     <strong>Hosam Khadrawi</strong>
     <a href="#about">About</a>
+    <a href="#skills">Skills</a>
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
     <a href="#education">Education</a>
     <a href="#contact">Contact</a>
   </div>
@@ -128,12 +191,12 @@ footer{padding:2rem 0;color:var(--dim);font-size:.9rem;border-top:1px solid var(
     <div class="stage">
       <div class="frame" id="banner">
         <!-- Save your animated SVG next to this file as banner.svg -->
-        <img src="dark.svg" alt="Hosam Khadrawi: Embedded Software, IoT, Edge AI and Robotics" width="1180" height="610">
+        <img src="banner.svg" alt="Hosam Khadrawi: Embedded Software, IoT, Edge AI and Robotics" width="1180" height="610">
       </div>
     </div>
     <div class="intro">
       <div>
-        <p class="role">Embedded Systems Engineer</p>
+        <p class="role"><span class="prompt">$&gt;</span> <span id="typed">Embedded Systems Engineer</span><span class="caret"></span></p>
         <p class="lede">I design firmware and connected devices that sense, decide and act: from ESP32 ticket terminals and fire monitors to ROS 2 robots running on the edge.</p>
       </div>
       <div class="cta">
@@ -154,24 +217,47 @@ footer{padding:2rem 0;color:var(--dim);font-size:.9rem;border-top:1px solid var(
 <main>
 <section id="about">
   <div class="wrap">
+    <p class="eyebrow">// 01. about</p>
     <h2>About me</h2>
     <div class="about">
       <div>
         <p>I hold a Bachelor’s degree in Embedded Software Engineering and a Master’s degree in IoT and AI. Over four years I have written C/C++ firmware, worked with FreeRTOS, and I am currently going deeper into embedded Linux and Yocto.</p>
         <p style="margin-top:1rem">My work covers the full path from architecture and UML models to PCB design, firmware, cloud connectivity and integration testing on the client’s site.</p>
       </div>
-      <ul class="pillars tilt">
-        <li><b>Embedded AI</b><span>Intelligent systems: TinyML, TensorFlow Lite Micro, INT8 quantization.</span></li>
-        <li><b>Embedded IoT</b><span>Connected systems: MQTT, OTA, Wi-Fi, GSM, Ethernet, cloud platforms.</span></li>
-        <li><b>Embedded Robotics</b><span>Autonomous systems: ROS 2, Nav2, SLAM, sensor fusion.</span></li>
-        <li><b>Embedded Security</b><span>Secure systems: access control, cryptography, firewalls, IDS.</span></li>
-      </ul>
+      <div class="lab">
+        <p class="sub">// skill radar</p>
+        <div class="radar"><canvas id="radar" aria-label="3D radar chart of my six embedded domains" role="img"></canvas></div>
+        <p class="hint">Drag to rotate · levels are my own estimate, 1 to 100</p>
+        <div class="bars">
+        <div class="bar" data-v="85" data-short="Software"><span class="bl">Embedded Software</span><div class="line"><i class="fill"></i></div><span class="bv">0</span></div>
+        <div class="bar" data-v="78" data-short="Hardware"><span class="bl">Embedded Hardware</span><div class="line"><i class="fill"></i></div><span class="bv">0</span></div>
+        <div class="bar" data-v="90" data-short="IoT &amp; Network"><span class="bl">Embedded IoT &amp; Network</span><div class="line"><i class="fill"></i></div><span class="bv">0</span></div>
+        <div class="bar" data-v="55" data-short="Security"><span class="bl">Embedded Security</span><div class="line"><i class="fill"></i></div><span class="bv">0</span></div>
+        <div class="bar" data-v="65" data-short="AI"><span class="bl">Embedded AI</span><div class="line"><i class="fill"></i></div><span class="bv">0</span></div>
+        <div class="bar" data-v="72" data-short="Robotics"><span class="bl">Embedded Robotics</span><div class="line"><i class="fill"></i></div><span class="bv">0</span></div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <p class="eyebrow">// 02. skills</p>
+    <h2>Tech Stack</h2>
+    <div class="sgroup"><p class="sub">// Embedded &amp; Hardware</p><ul class="pills" data-g="chip"><li data-i="cplusplus">C / C++</li><li data-i="espressif">ESP32</li><li data-i="espressif">ESP8266</li><li data-i="stmicroelectronics">STM32</li><li data-i="raspberrypi">Raspberry Pi</li><li data-i="arduino">Arduino</li><li>FreeRTOS</li><li>RFID</li><li>Sensors &amp; Actuators</li><li data-i="altiumdesigner">PCB / Altium</li><li>Proteus</li><li data-i="kicad">KiCad (learning)</li></ul></div>
+<div class="sgroup"><p class="sub">// IoT &amp; Connectivity</p><ul class="pills" data-g="net"><li data-i="mqtt">MQTT</li><li data-i="eclipsemosquitto">Mosquitto</li><li data-i="bluetooth">WiFi / BLE</li><li>GSM</li><li>Ethernet</li><li>HTTP / REST</li><li data-i="socketdotio">WebSocket</li><li>OTA</li><li data-i="firebase">Firebase</li><li data-i="microsoftazure">Azure IoT Hub</li><li>UART / I2C / SPI</li><li>CAN / RS485</li><li>TCP/IP / UDP</li><li data-i="express">Express.js</li><li data-i="mongodb">MongoDB</li><li data-i="mysql">MySQL</li></ul></div>
+<div class="sgroup"><p class="sub">// Embedded AI</p><ul class="pills" data-g="ai"><li data-i="tensorflow">TinyML</li><li data-i="tensorflow">TensorFlow Lite</li><li data-i="tensorflow">TFLite Micro</li><li>INT8 Quantization</li><li data-i="edgeimpulse">Edge Impulse</li><li>YOLO</li><li data-i="numpy">NumPy / Pandas</li></ul></div>
+<div class="sgroup"><p class="sub">// Robotics</p><ul class="pills" data-g="robot"><li data-i="ros">ROS 2 Humble</li><li>Nav2</li><li>SLAM</li><li>Gazebo</li><li>URDF</li><li>LiDAR</li><li>Depth Cameras</li><li>Sensor Fusion</li></ul></div>
+<div class="sgroup"><p class="sub">// Software &amp; Architecture</p><ul class="pills" data-g="code"><li data-i="python">Python</li><li>OOP</li><li>Clean Architecture</li><li>UML</li><li>Design Patterns</li><li>State Machines</li><li>PID Control</li><li data-i="linux">Embedded Linux</li><li data-i="yoctoproject">Yocto</li></ul></div>
+<div class="sgroup"><p class="sub">// Testing &amp; Tools</p><ul class="pills" data-g="tools"><li>Unit Testing</li><li>SIL / HIL</li><li>Unity Test</li><li>Wokwi</li><li data-i="github">Git / GitHub</li><li data-i="platformio">PlatformIO</li><li data-i="visualstudiocode">VS Code</li><li data-i="arduino">Arduino IDE</li></ul></div>
+<div class="sgroup"><p class="sub">// Embedded Security</p><ul class="pills" data-g="shield"><li>Access Control</li><li>Cryptography</li><li>Firewalls / DMZ</li><li>IDS</li><li data-i="pfsense">pfSense</li><li>IoT Security</li></ul></div>
   </div>
 </section>
 
 <section id="experience">
   <div class="wrap">
+    <p class="eyebrow">// 03. experience</p>
     <h2>Experience</h2>
     <ol class="tl">
 
@@ -269,6 +355,7 @@ footer{padding:2rem 0;color:var(--dim);font-size:.9rem;border-top:1px solid var(
 
 <section id="projects">
   <div class="wrap">
+    <p class="eyebrow">// 04. projects</p>
     <h2>Academic projects</h2>
     <div class="proj">
       <article class="tilt">
@@ -291,24 +378,9 @@ footer{padding:2rem 0;color:var(--dim);font-size:.9rem;border-top:1px solid var(
   </div>
 </section>
 
-<section id="skills">
-  <div class="wrap">
-    <h2>Technical skills</h2>
-    <div class="skills">
-      <div class="tilt"><h3>Software design</h3><p>Software architecture, Clean Architecture, MVC, UML, design patterns, state machines.</p></div>
-      <div class="tilt"><h3>Firmware and OS</h3><p>C, C++, Python, OOP, PID control, FreeRTOS, embedded Linux fundamentals, Yocto.</p></div>
-      <div class="tilt"><h3>IoT and networking</h3><p>UART, I2C, SPI, RS232, RS422/RS485, CAN, USB, Ethernet, Wi-Fi, BLE, GSM, TCP/IP, UDP, HTTP/REST, WebSocket, MQTT, Mosquitto, OTA, Firebase, Azure IoT Hub, Express.js, MongoDB, MySQL.</p></div>
-      <div class="tilt"><h3>Testing and tools</h3><p>Unit and integration testing, SIL, HIL fundamentals, Unity Test, Wokwi, Proteus, Gazebo, Git, GitHub, PlatformIO, VS Code, Arduino IDE.</p></div>
-      <div class="tilt"><h3>Embedded AI</h3><p>Machine learning, Edge AI, TinyML, TensorFlow Lite and Lite Micro, INT8 quantization, sensor-data processing, YOLO, Edge Impulse, NumPy, Pandas, Matplotlib.</p></div>
-      <div class="tilt"><h3>Robotics</h3><p>ROS 2 Humble, SLAM, Nav2, URDF, robot localization, autonomous navigation, perception, sensor fusion, LiDAR, depth cameras.</p></div>
-      <div class="tilt"><h3>Hardware</h3><p>ESP32, ESP8266, STM32, Raspberry Pi, sensor and actuator integration, prototyping, PCB design in Proteus and Altium Designer, KiCad (learning).</p></div>
-      <div class="tilt"><h3>Security</h3><p>IoT device security fundamentals, access control, cryptography fundamentals, firewalls, DMZ, IDS, pfSense.</p></div>
-    </div>
-  </div>
-</section>
-
 <section id="education">
   <div class="wrap">
+    <p class="eyebrow">// 05. education</p>
     <h2>Education and recognition</h2>
     <div class="cols">
       <div class="tilt">
@@ -345,6 +417,7 @@ footer{padding:2rem 0;color:var(--dim);font-size:.9rem;border-top:1px solid var(
 
 <section id="contact" class="contact">
   <div class="wrap">
+    <p class="eyebrow">// 06. contact</p>
     <h2>Let’s build something that works in the real world</h2>
     <ul>
       <li><span>Email</span><a href="mailto:hosam.khadrawi.official@gmail.com">hosam.khadrawi.official@gmail.com</a></li>
@@ -430,6 +503,154 @@ footer{padding:2rem 0;color:var(--dim);font-size:.9rem;border-top:1px solid var(
     tilt(document.getElementById('banner'),7);
     document.querySelectorAll('.tilt').forEach(function(el){tilt(el,5)});
   }
+
+  /* custom cursor: dot + ring + glowing trail */
+  if(!reduce&&fine){
+    document.documentElement.classList.add('has-cursor');
+    function mk(cls){var d=document.createElement('div');d.className='cur '+cls;d.setAttribute('aria-hidden','true');document.body.appendChild(d);return d}
+    var dot=mk('cur-dot'),ring=mk('cur-ring'),trail=[];
+    for(var i=0;i<7;i++){var t=mk('trail');t.style.transform='scale('+(1-i*.12)+')';trail.push({el:t,x:0,y:0})}
+    var px=-100,py=-100,rx=-100,ry=-100;
+    addEventListener('pointermove',function(e){
+      px=e.clientX;py=e.clientY;
+      dot.classList.add('on');ring.classList.add('on');trail.forEach(function(t){t.el.classList.add('on')});
+      ring.classList.toggle('hot',!!e.target.closest('a,button,.tilt'));
+    },{passive:true});
+    addEventListener('pointerdown',function(){ring.classList.add('down')});
+    addEventListener('pointerup',function(){ring.classList.remove('down')});
+    document.addEventListener('pointerleave',function(){[dot,ring].concat(trail.map(function(t){return t.el})).forEach(function(e){e.classList.remove('on')})});
+    (function loop(){
+      rx+=(px-rx)*.18;ry+=(py-ry)*.18;
+      dot.style.left=px+'px';dot.style.top=py+'px';
+      ring.style.left=rx+'px';ring.style.top=ry+'px';
+      var lx=rx,ly=ry;
+      trail.forEach(function(t,i){t.x+=(lx-t.x)*(.32-i*.03);t.y+=(ly-t.y)*(.32-i*.03);
+        t.el.style.left=t.x+'px';t.el.style.top=t.y+'px';lx=t.x;ly=t.y});
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  /* typing effect, like the terminal in the banner */
+  var typed=document.getElementById('typed');
+  if(typed&&!reduce){
+    var words=['Embedded Systems Engineer','Firmware & Real-Time Systems','IoT & Connected Systems','Edge AI / TinyML Developer','Robotics & ROS 2'],w=0,k=0,del=false;
+    (function tick(){
+      var s=words[w];
+      typed.textContent=s.slice(0,k);
+      if(!del&&k===s.length){del=true;return setTimeout(tick,1800)}
+      if(del&&k===0){del=false;w=(w+1)%words.length}
+      k+=del?-1:1;
+      setTimeout(tick,del?35:70);
+    })();
+  }
+
+  /* skill icons: Simple Icons CDN, inline fallback if an icon is missing or offline */
+  var FB={
+    chip:'<rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M9 3v4M15 3v4M9 17v4M15 17v4M3 9h4M3 15h4M17 9h4M17 15h4"/>',
+    net:'<path d="M3 9a13 13 0 0 1 18 0M6 12.5a8.5 8.5 0 0 1 12 0M9 16a4 4 0 0 1 6 0"/><circle cx="12" cy="19" r="1"/>',
+    ai:'<circle cx="6" cy="6" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="8" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 6l8 2M7 8l1 8M10 18h6M18 10v6M8 7l9 10"/>',
+    robot:'<rect x="5" y="8" width="14" height="10" rx="2"/><path d="M12 4v4M9 13h.01M15 13h.01M9 21v-3M15 21v-3"/><circle cx="12" cy="3.5" r="1"/>',
+    code:'<path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 5l-4 14"/>',
+    tools:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>',
+    shield:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>'
+  };
+  function fb(g){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    s.setAttribute('viewBox','0 0 24 24');s.setAttribute('class','ic');s.setAttribute('fill','none');s.setAttribute('stroke','currentColor');
+    s.setAttribute('stroke-width','1.8');s.setAttribute('stroke-linecap','round');s.setAttribute('stroke-linejoin','round');s.innerHTML=FB[g]||FB.chip;return s}
+  document.querySelectorAll('.pills').forEach(function(ul){
+    var g=ul.getAttribute('data-g');
+    ul.querySelectorAll('li').forEach(function(li){
+      var slug=li.getAttribute('data-i');
+      if(!slug){li.prepend(fb(g));return}
+      var img=new Image();img.className='ic';img.alt='';img.loading='lazy';
+      img.src='https://cdn.simpleicons.org/'+slug+'/42D9FF';
+      img.onerror=function(){img.replaceWith(fb(g))};
+      li.prepend(img);
+    });
+  });
+
+  /* 3D radar (spider) chart: extruded prism, scan slice, drag to rotate */
+  (function(){
+    var cv=document.getElementById('radar');if(!cv)return;
+    var bars=[].slice.call(document.querySelectorAll('.bar'));
+    var V=bars.map(function(b){return +b.dataset.v}),L=bars.map(function(b){return b.dataset.short.replace('&amp;','&')});
+    var c=cv.getContext('2d'),w,h,S,K=V.length,H=.2;
+    function fit(){var d=Math.min(devicePixelRatio||1,2);w=cv.clientWidth;h=Math.round(w*.88);cv.style.height=h+'px';
+      cv.width=w*d;cv.height=h*d;c.setTransform(d,0,0,d,0,0);S=w*.255}
+    var yaw=.5,pitch=.8,drag=false,lx=0,ly=0,hover=-1,t0=performance.now(),last=t0,vis=true,sp=[];
+    function ang(k){return k*Math.PI*2/K-Math.PI/2}
+    function P(x,y,z){var cs=Math.cos(yaw),sn=Math.sin(yaw),X=x*cs+z*sn,Z=-x*sn+z*cs,
+      cp=Math.cos(pitch),sp_=Math.sin(pitch),Y=y*cp-Z*sp_;Z=y*sp_+Z*cp;var s=4/(4-Z);
+      return{x:w/2+X*S*s,y:h*.53-Y*S*s,z:Z,s:s}}
+    function poly(pts){c.beginPath();pts.forEach(function(p,i){i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y)});c.closePath()}
+    function ring(r,y){var a=[];for(var k=0;k<K;k++)a.push(P(r*Math.cos(ang(k)),y,r*Math.sin(ang(k))));return a}
+    function ease(t){return 1-Math.pow(1-t,3)}
+    function draw(now){
+      fit2();c.clearRect(0,0,w,h);
+      var g=reduce?1:ease(Math.min(1,(now-t0)/1600));
+      [.25,.5,.75,1].forEach(function(r,i){poly(ring(r,-H));c.strokeStyle='rgba(66,217,255,'+(i==3?.5:.2)+')';c.lineWidth=1;c.stroke()});
+      var ctr=P(0,-H,0);
+      for(var k=0;k<K;k++){var e=P(Math.cos(ang(k)),-H,Math.sin(ang(k))),e2=P(Math.cos(ang(k)),H,Math.sin(ang(k)));
+        c.strokeStyle='rgba(22,119,255,.6)';c.beginPath();c.moveTo(ctr.x,ctr.y);c.lineTo(e.x,e.y);c.stroke();
+        c.strokeStyle='rgba(66,217,255,.25)';c.beginPath();c.moveTo(e.x,e.y);c.lineTo(e2.x,e2.y);c.stroke()}
+      poly(ring(1,H));c.strokeStyle='rgba(66,217,255,.18)';c.stroke();
+      var base=[],top=[];
+      for(var k=0;k<K;k++){var r=V[k]/100*g,x=r*Math.cos(ang(k)),z=r*Math.sin(ang(k));base.push(P(x,-H,z));top.push(P(x,H,z))}
+      poly(base);c.fillStyle='rgba(22,119,255,.12)';c.fill();
+      var faces=[];for(var k=0;k<K;k++){var j=(k+1)%K;faces.push({q:[base[k],base[j],top[j],top[k]],z:(base[k].z+base[j].z+top[j].z+top[k].z)/4,k:k})}
+      faces.sort(function(a,b){return a.z-b.z});
+      faces.forEach(function(f,i){poly(f.q);var a=.2+.18*(f.z+1)/2;c.fillStyle='rgba(22,119,255,'+a.toFixed(2)+')';c.fill();c.strokeStyle='rgba(0,194,255,.7)';c.lineWidth=1;c.stroke()});
+      c.save();c.shadowColor='#00C2FF';c.shadowBlur=16;poly(top);c.fillStyle='rgba(0,194,255,.22)';c.fill();c.strokeStyle='#42D9FF';c.lineWidth=2;c.stroke();c.restore();
+      /* scan slice sweeping through the prism */
+      var u=reduce?.5:.5+.5*Math.sin(now/1100),sy=-H+2*H*u,sl=[];
+      for(var k=0;k<K;k++){var r=V[k]/100*g;sl.push(P(r*Math.cos(ang(k)),sy,r*Math.sin(ang(k))))}
+      poly(sl);c.strokeStyle='rgba(255,255,255,.55)';c.lineWidth=1.2;c.stroke();
+      /* vertices + labels */
+      sp=[];
+      for(var k=0;k<K;k++){
+        var p=top[k],hot=k===hover,pulse=reduce?0:Math.sin(now/500+k)*.5+.5,rad=(hot?7:4.5)*p.s+pulse*1.5;
+        sp.push({x:p.x,y:p.y});
+        var gr=c.createRadialGradient(p.x,p.y,0,p.x,p.y,rad*3.2);gr.addColorStop(0,'rgba(66,217,255,.9)');gr.addColorStop(1,'rgba(0,194,255,0)');
+        c.fillStyle=gr;c.beginPath();c.arc(p.x,p.y,rad*3.2,0,6.2832);c.fill();
+        c.fillStyle='#fff';c.beginPath();c.arc(p.x,p.y,rad*.6,0,6.2832);c.fill();
+        var lp=P(1.24*Math.cos(ang(k)),-H,1.24*Math.sin(ang(k))),al=.55+.45*(lp.z+1)/2;
+        c.textAlign=Math.abs(lp.x-w/2)<12?'center':lp.x<w/2?'right':'left';
+        c.font='600 '+Math.round(w*.032+2)+'px Inter,sans-serif';c.fillStyle='rgba(243,248,255,'+al.toFixed(2)+')';c.fillText(L[k],lp.x,lp.y);
+        c.font='600 '+Math.round(w*.028+1)+'px JetBrains Mono,monospace';c.fillStyle=hot?'#42D9FF':'rgba(22,119,255,'+Math.min(1,al+.2).toFixed(2)+')';
+        c.fillText(Math.round(V[k]*g),lp.x,lp.y+Math.round(w*.04+3));
+      }
+    }
+    function fit2(){if(cv.clientWidth!==w)fit()}
+    fit();
+    cv.addEventListener('pointerdown',function(e){drag=true;lx=e.clientX;ly=e.clientY;cv.setPointerCapture(e.pointerId)});
+    cv.addEventListener('pointerup',function(){drag=false});
+    cv.addEventListener('pointermove',function(e){
+      if(drag){yaw+=(e.clientX-lx)*.01;pitch=Math.max(.2,Math.min(1.25,pitch+(e.clientY-ly)*.008));lx=e.clientX;ly=e.clientY}
+      else{var b=cv.getBoundingClientRect(),mx=e.clientX-b.left,my=e.clientY-b.top;hover=-1;
+        sp.forEach(function(p,i){if(Math.hypot(p.x-mx,p.y-my)<24)hover=i})}
+      if(reduce)draw(performance.now());
+    });
+    cv.addEventListener('pointerleave',function(){hover=-1});
+    new IntersectionObserver(function(en){vis=en[0].isIntersecting;if(vis){t0=performance.now();if(reduce)draw(t0)}}).observe(cv);
+    (function loop(now){
+      if(vis){var dt=now-last;if(!drag&&!reduce)yaw+=dt*.00028;draw(now)}
+      last=now;if(!reduce)requestAnimationFrame(loop);
+    })(performance.now());
+    if(reduce)draw(performance.now());
+
+    /* line charts: animate in when visible */
+    var box=document.querySelector('.bars');
+    new IntersectionObserver(function(en,ob){
+      if(!en[0].isIntersecting)return;ob.disconnect();
+      bars.forEach(function(b,i){
+        var f=b.querySelector('.fill'),n=b.querySelector('.bv'),v=+b.dataset.v;
+        setTimeout(function(){f.style.width=v+'%';
+          if(reduce){n.textContent=v;return}
+          var s=performance.now();(function up(t){var p=Math.min(1,(t-s)/1500);n.textContent=Math.round(v*ease(p));if(p<1)requestAnimationFrame(up)})(s);
+        },i*120);
+      });
+    },{threshold:.3}).observe(box);
+  })();
 })();
 </script>
 </body>
