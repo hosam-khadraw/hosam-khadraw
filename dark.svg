@@ -128,7 +128,7 @@
       </rect>
     </clipPath>
     <text x="522" y="200" fill="#42D9FF"
-      clip-path="url(#phraseClip2)" class="font-mono" font-size="18" font-weight="bold">Edge AI / TinyML Developer</text>
+      clip-path="url(#phraseClip2)" class="font-mono" font-size="18" font-weight="bold"></text>
 
     <clipPath id="phraseClip3">
       <rect x="522" y="180" width="0" height="30">
@@ -139,7 +139,7 @@
       </rect>
     </clipPath>
     <text x="522" y="200" fill="#1677FF"
-      clip-path="url(#phraseClip3)" class="font-mono" font-size="18" font-weight="bold">Robotics &amp; ROS 2</text>
+      clip-path="url(#phraseClip3)" class="font-mono" font-size="18" font-weight="bold"></text>
 
     <clipPath id="phraseClip4">
       <rect x="522" y="180" width="0" height="30">
@@ -150,7 +150,7 @@
       </rect>
     </clipPath>
     <text x="522" y="200" fill="#00C2FF"
-      clip-path="url(#phraseClip4)" class="font-mono" font-size="18" font-weight="bold">Firmware &amp; Real-Time Systems</text>
+      clip-path="url(#phraseClip4)" class="font-mono" font-size="18" font-weight="bold"></text>
   <rect x="522" y="183" width="8" height="20" fill="#00C2FF" class="cursor-blink"/>
   <line x1="460" y1="225" x2="1120" y2="225" stroke="#183B60" stroke-opacity=".65"/>
 
