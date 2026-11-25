@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hosam Khadrawi – Embedded Systems Engineer</title>
+<meta name="description" content="Embedded Systems Engineer building intelligent, connected, autonomous and secure embedded solutions: Embedded AI, IoT, Robotics and Security.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔌</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#030B18; --panel:rgba(7,20,38,.72); --line:#183B60;
+  --blue:#1677FF; --cyan:#00C2FF; --ice:#42D9FF;
+  --text:#F3F8FF; --dim:#9BB3CC;
+  --sans:"Inter","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:400 1.0625rem/1.7 var(--sans);-webkit-font-smoothing:antialiased}
+#magic{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.glow{position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:radial-gradient(60vmax 60vmax at 15% 10%,rgba(22,119,255,.22),transparent 60%),
+             radial-gradient(55vmax 55vmax at 90% 80%,rgba(0,194,255,.14),transparent 60%)}
+a{color:var(--cyan);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--ice);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(1.1rem,4vw,2rem)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+h1,h2,h3{line-height:1.15;font-weight:800;letter-spacing:-.01em}
+h2{font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:2rem;
+   background:linear-gradient(90deg,var(--text),var(--ice));-webkit-background-clip:text;background-clip:text;color:transparent}
+section{padding:clamp(3rem,7vw,5.5rem) 0;border-top:1px solid rgba(24,59,96,.7)}
+
+nav{position:sticky;top:0;z-index:10;background:rgba(3,11,24,.78);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:1.4rem;align-items:center;overflow-x:auto;padding-block:.8rem;white-space:nowrap}
+nav strong{margin-right:auto;font-weight:800}
+nav a{color:var(--dim);text-decoration:none;font-size:.95rem}
+nav a:hover{color:var(--ice)}
+
+/* hero with 3D banner */
+.hero{padding:clamp(1.5rem,4vw,3rem) 0 clamp(3rem,6vw,5rem);border:0}
+.stage{perspective:1400px}
+.frame{border-radius:24px;transform-style:preserve-3d;transition:transform .25s ease-out;will-change:transform;
+  box-shadow:0 30px 80px -20px rgba(22,119,255,.55),0 0 0 1px rgba(0,194,255,.25)}
+.frame img{display:block;width:100%;height:auto;border-radius:24px}
+.intro{display:flex;flex-wrap:wrap;gap:1.5rem 3rem;justify-content:space-between;align-items:flex-end;margin-top:2.5rem}
+.role{font:600 1.15rem var(--mono);color:var(--cyan)}
+.lede{color:var(--dim);max-width:36rem;margin-top:.6rem}
+.cta{display:flex;flex-wrap:wrap;gap:.8rem}
+.btn{display:inline-block;padding:.75rem 1.3rem;border:1.5px solid var(--cyan);border-radius:10px;color:var(--cyan);text-decoration:none;font-weight:600;transition:transform .2s,box-shadow .2s}
+.btn.fill{background:linear-gradient(90deg,var(--blue),var(--cyan));border-color:transparent;color:#021022}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px -6px rgba(0,194,255,.6)}
+.facts{display:flex;flex-wrap:wrap;gap:.6rem 2.2rem;margin-top:2.2rem;color:var(--dim);font-size:.98rem}
+.facts b{color:var(--text);font-weight:600}
+
+/* glass panels with 3D tilt */
+.tilt{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:1.4rem 1.5rem;backdrop-filter:blur(6px);
+  transform-style:preserve-3d;transition:transform .2s ease-out,border-color .2s,box-shadow .2s;will-change:transform}
+.tilt:hover{border-color:var(--cyan);box-shadow:0 18px 50px -18px rgba(0,194,255,.45)}
+
+.about{display:grid;grid-template-columns:1fr 1fr;gap:2rem 3rem;align-items:start}
+.about p{max-width:36rem;color:#d3e0f0}
+.pillars{list-style:none;padding:0;display:grid;gap:1rem}
+.pillars b{display:block;font-size:1.1rem}
+.pillars span{color:var(--dim);font-size:.97rem}
+
+.tl{list-style:none;padding:0;position:relative}
+.tl::before{content:"";position:absolute;left:5px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--blue),var(--cyan),transparent)}
+.tl>li{position:relative;padding:0 0 1.6rem 2.2rem}
+.tl>li::before{content:"";position:absolute;left:0;top:1.5rem;width:12px;height:12px;background:var(--cyan);border-radius:50%;box-shadow:0 0 0 4px var(--bg),0 0 14px var(--cyan)}
+.tl h3{font-size:1.25rem}
+.meta{color:var(--dim);font-size:.93rem;margin:.2rem 0 .7rem;font-family:var(--mono)}
+.meta b{color:var(--cyan);font-weight:600}
+.tl ul{padding-left:1.1rem;max-width:46rem;color:#d3e0f0}
+.tl ul li{margin-bottom:.4rem}
+ul.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem;padding:0;list-style:none}
+ul.tags li{padding:.15rem .7rem;margin:0;border:1px solid rgba(22,119,255,.55);border-radius:8px;background:#0B2038;font-size:.84rem;color:var(--text)}
+.links{margin-top:.7rem;font-size:.95rem;display:flex;gap:1.1rem;flex-wrap:wrap}
+
+.proj{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+.proj h3{font-size:1.15rem}
+.proj .stack{color:var(--cyan);font:500 .85rem var(--mono);margin:.3rem 0 .7rem}
+.proj p{color:#d3e0f0;font-size:.98rem}
+
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+.skills h3{font-size:1rem;color:var(--ice);margin-bottom:.4rem}
+.skills p{color:#d3e0f0;font-size:.96rem;line-height:1.6}
+
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.cols h3{font-size:1.15rem;margin-bottom:1rem;color:var(--ice)}
+.cols ul{list-style:none;padding:0;display:grid;gap:.9rem}
+.cols li{color:#d3e0f0;font-size:.97rem}
+.cols li b{display:block;color:var(--text)}
+.cols small{color:var(--dim)}
+
+.contact h2{font-size:clamp(2.1rem,6vw,3.6rem);max-width:18ch}
+.contact ul{list-style:none;padding:0;display:grid;gap:.5rem;font-size:1.12rem}
+.contact li span{display:inline-block;width:6rem;color:var(--dim);font:.9rem var(--mono)}
+footer{padding:2rem 0;color:var(--dim);font-size:.9rem;border-top:1px solid var(--line)}
+
+@media (max-width:820px){
+  .about,.skills,.cols,.proj{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.frame,.tilt{transition:none;transform:none!important}}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<canvas id="magic" aria-hidden="true"></canvas>
+
+<nav>
+  <div class="wrap">
+    <strong>Hosam Khadrawi</strong>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1 class="sr">Hosam Khadrawi, Embedded Systems Engineer</h1>
+    <div class="stage">
+      <div class="frame" id="banner">
+        <!-- Save your animated SVG next to this file as banner.svg -->
+        <img src="banner.svg" alt="Hosam Khadrawi: Embedded Software, IoT, Edge AI and Robotics" width="1180" height="610">
+      </div>
+    </div>
+    <div class="intro">
+      <div>
+        <p class="role">Embedded Systems Engineer</p>
+        <p class="lede">I design firmware and connected devices that sense, decide and act: from ESP32 ticket terminals and fire monitors to ROS 2 robots running on the edge.</p>
+      </div>
+      <div class="cta">
+        <a class="btn fill" href="#contact">Get in touch</a>
+        <a class="btn" href="#experience">See my experience</a>
+        <!-- <a class="btn" href="General_cv.pdf" download>Download CV</a> -->
+      </div>
+    </div>
+    <p class="facts">
+      <span><b>4 years</b> of embedded firmware</span>
+      <span><b>12</b> engineering projects</span>
+      <span><b>Sousse</b>, Tunisia</span>
+      <span>Open to freelance and full-time roles</span>
+    </p>
+  </div>
+</header>
+
+<main>
+<section id="about">
+  <div class="wrap">
+    <h2>About me</h2>
+    <div class="about">
+      <div>
+        <p>I hold a Bachelor’s degree in Embedded Software Engineering and a Master’s degree in IoT and AI. Over four years I have written C/C++ firmware, worked with FreeRTOS, and I am currently going deeper into embedded Linux and Yocto.</p>
+        <p style="margin-top:1rem">My work covers the full path from architecture and UML models to PCB design, firmware, cloud connectivity and integration testing on the client’s site.</p>
+      </div>
+      <ul class="pillars tilt">
+        <li><b>Embedded AI</b><span>Intelligent systems: TinyML, TensorFlow Lite Micro, INT8 quantization.</span></li>
+        <li><b>Embedded IoT</b><span>Connected systems: MQTT, OTA, Wi-Fi, GSM, Ethernet, cloud platforms.</span></li>
+        <li><b>Embedded Robotics</b><span>Autonomous systems: ROS 2, Nav2, SLAM, sensor fusion.</span></li>
+        <li><b>Embedded Security</b><span>Secure systems: access control, cryptography, firewalls, IDS.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2>Experience</h2>
+    <ol class="tl">
+
+      <li>
+        <h3>Embedded IoT Software Engineer (Freelance)</h3>
+        <p class="meta"><b>Inherited Games Studio</b> · Sousse, Tunisia · Sep. 2026 – Nov. 2026</p>
+        <ul>
+          <li>Designed and built an ESP32 RFID ticket-validation terminal for smart public transportation, verifying contactless cards through a Wi-Fi/GSM-connected backend over HTTP.</li>
+          <li>Structured the firmware with Clean Architecture and UML: hardware abstraction and FreeRTOS tasks for RFID reading, backend communication, OTA updates, and feedback through OLED, LEDs and audio.</li>
+        </ul>
+        <ul class="tags"><li>ESP32</li><li>C/C++</li><li>FreeRTOS</li><li>RFID</li><li>OTA</li><li>GSM</li></ul>
+      </li>
+
+      <li>
+        <h3>Embedded Robotics Software Engineer</h3>
+        <p class="meta"><b>Nexor Robotics</b> · Tunisia · Mar. 2026 – Jul. 2026</p>
+        <ul>
+          <li>Developed autonomous control and navigation software for a waiter robot, reaching a 90% success rate across simulated navigation trials.</li>
+          <li>Modeled the robot in URDF and built Python/C++ components with ROS 2, Nav2, SLAM, LiDAR, depth cameras, sensor fusion and YOLO object detection, then ran Software-in-the-Loop tests in Gazebo.</li>
+        </ul>
+        <ul class="tags"><li>ROS 2 Humble</li><li>Nav2</li><li>SLAM</li><li>Gazebo</li><li>YOLO</li><li>URDF</li></ul>
+      </li>
+
+      <li>
+        <h3>Embedded IoT Software Engineer Intern</h3>
+        <p class="meta"><b>SITEX</b> · Sousse, Tunisia · Jan. 2025 – Jun. 2025</p>
+        <ul>
+          <li>Extended an industrial anti-fire monitoring infrastructure with embedded monitoring and emergency response, evaluating alarm latency, real-time status delivery and reliability.</li>
+          <li>Led a team on the software architecture and UML models, ESP32 firmware (C/C++, Arduino, FreeRTOS), Ethernet connectivity, PCB design in Proteus and Altium Designer, and hardware/software integration testing.</li>
+        </ul>
+        <p class="links"><a href="#">Brochure</a><a href="#">GitHub</a><a href="#">Resume</a></p>
+      </li>
+
+      <li>
+        <h3>Embedded Software Engineer (Freelance)</h3>
+        <p class="meta"><b>Enactus ISI</b> · Mahdia, Tunisia · Sep. 2024 – Dec. 2024</p>
+        <ul>
+          <li>Built and tested a swimmer-safety prototype that detects abnormal swimming conditions by fusing gyroscope, accelerometer and MAX30105 data.</li>
+          <li>Designed the architecture in UML and implemented sensor acquisition and processing in C++ with FreeRTOS on an ESP32.</li>
+        </ul>
+        <p class="links"><a href="#">Brochure</a><a href="#">GitHub</a></p>
+      </li>
+
+      <li>
+        <h3>Edge AI &amp; Embedded IoT Software Engineer Intern</h3>
+        <p class="meta"><b>Smart Logger</b> · Sousse, Tunisia · Jul. 2024 – Aug. 2024</p>
+        <ul>
+          <li>Automated water-meter data collection with a real-time IoT dashboard and a custom sensor-based solution.</li>
+          <li>Explored TinyML and TensorFlow Lite deployment, integrated MQTT/GSM telemetry, and ran system integration tests at the client’s site.</li>
+        </ul>
+        <p class="links"><a href="#">Brochure</a><a href="#">GitHub</a></p>
+      </li>
+
+      <li>
+        <h3>Embedded IoT Software Engineer Intern, Team Lead</h3>
+        <p class="meta"><b>SITEX</b> · Sousse, Tunisia · Jan. 2024 – Jun. 2024</p>
+        <ul>
+          <li>Led a team building an ESP32-based industrial anti-fire monitoring system during the first phase of the connected-system project.</li>
+        </ul>
+        <p class="links"><a href="#">Brochure</a><a href="#">GitHub</a><a href="#">Resume</a></p>
+      </li>
+
+      <li>
+        <h3>Web &amp; Embedded IoT Developer Intern</h3>
+        <p class="meta"><b>ISET Sousse</b> · Sousse, Tunisia · Feb. 2022 – Jun. 2022</p>
+        <ul>
+          <li>Built an IoT monitoring platform linking a web app (HTML, CSS, JavaScript, Bootstrap) to an embedded system through Firebase.</li>
+          <li>Integrated the cloud platform with a C++ Arduino-framework device and tested the full solution.</li>
+        </ul>
+        <p class="links"><a href="#">Brochure</a><a href="#">GitHub</a><a href="#">Resume</a></p>
+      </li>
+
+      <li>
+        <h3>Mobile &amp; Embedded IoT Developer Intern</h3>
+        <p class="meta"><b>SG Automatisme</b> · Sousse, Tunisia · Jan. 2022 – Feb. 2022</p>
+        <ul>
+          <li>Developed an Android app in Java that displays industrial panel data received over Wi-Fi from an ESP32 display system.</li>
+        </ul>
+        <p class="links"><a href="#">Brochure</a><a href="#">GitHub</a><a href="#">Resume</a></p>
+      </li>
+
+      <li>
+        <h3>Mobile &amp; Embedded IoT Developer Intern</h3>
+        <p class="meta"><b>ATFP</b> · Sousse, Tunisia · Jan. 2021 – Jun. 2021</p>
+        <ul>
+          <li>Built a smart irrigation prototype with soil, temperature and humidity sensing and pump control on an ESP32.</li>
+          <li>Connected it to Firebase and wrote an Android app in Java to read the collected data.</li>
+        </ul>
+        <p class="links"><a href="#">Brochure</a><a href="#">GitHub</a><a href="#">Resume</a></p>
+      </li>
+
+    </ol>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2>Academic projects</h2>
+    <div class="proj">
+      <article class="tilt">
+        <div><h3>Intelligent Weather Prediction</h3><p class="stack">ESP32 · TinyML · TensorFlow Lite Micro · Python</p></div>
+        <p>A weather monitoring and prediction system using temperature, humidity and pressure sensors. Feature engineering, time-series normalization and INT8 quantization prepare the model to run on the microcontroller.</p>
+      </article>
+      <article class="tilt">
+        <div><h3>Smart Laundromats</h3><p class="stack">IoT · Flutter · Sep. 2023 – Dec. 2023</p></div>
+        <p>An IoT laundromat concept with a Flutter mobile app for connected laundry services and a smoother user experience.</p>
+      </article>
+      <article class="tilt">
+        <div><h3>Smart Elevator</h3><p class="stack">UML · Flutter · Automation · Sep. 2022 – Dec. 2022</p></div>
+        <p>A smart elevator automation project, modeled in UML with a Flutter mobile interface.</p>
+      </article>
+      <article class="tilt">
+        <div><h3>Smart Traffic Lights</h3><p class="stack">ESP32 · C++ · Sep. 2021 – Dec. 2021</p></div>
+        <p>An ESP32 traffic light prototype in C++ applying embedded programming to signal control.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Technical skills</h2>
+    <div class="skills">
+      <div class="tilt"><h3>Software design</h3><p>Software architecture, Clean Architecture, MVC, UML, design patterns, state machines.</p></div>
+      <div class="tilt"><h3>Firmware and OS</h3><p>C, C++, Python, OOP, PID control, FreeRTOS, embedded Linux fundamentals, Yocto.</p></div>
+      <div class="tilt"><h3>IoT and networking</h3><p>UART, I2C, SPI, RS232, RS422/RS485, CAN, USB, Ethernet, Wi-Fi, BLE, GSM, TCP/IP, UDP, HTTP/REST, WebSocket, MQTT, Mosquitto, OTA, Firebase, Azure IoT Hub, Express.js, MongoDB, MySQL.</p></div>
+      <div class="tilt"><h3>Testing and tools</h3><p>Unit and integration testing, SIL, HIL fundamentals, Unity Test, Wokwi, Proteus, Gazebo, Git, GitHub, PlatformIO, VS Code, Arduino IDE.</p></div>
+      <div class="tilt"><h3>Embedded AI</h3><p>Machine learning, Edge AI, TinyML, TensorFlow Lite and Lite Micro, INT8 quantization, sensor-data processing, YOLO, Edge Impulse, NumPy, Pandas, Matplotlib.</p></div>
+      <div class="tilt"><h3>Robotics</h3><p>ROS 2 Humble, SLAM, Nav2, URDF, robot localization, autonomous navigation, perception, sensor fusion, LiDAR, depth cameras.</p></div>
+      <div class="tilt"><h3>Hardware</h3><p>ESP32, ESP8266, STM32, Raspberry Pi, sensor and actuator integration, prototyping, PCB design in Proteus and Altium Designer, KiCad (learning).</p></div>
+      <div class="tilt"><h3>Security</h3><p>IoT device security fundamentals, access control, cryptography fundamentals, firewalls, DMZ, IDS, pfSense.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <h2>Education and recognition</h2>
+    <div class="cols">
+      <div class="tilt">
+        <h3>Education</h3>
+        <ul>
+          <li><b>Master’s, Data &amp; Computer Sciences: IoT and AI</b>ISET Mahdia, University of Monastir<br><small>Sep. 2022 – Jun. 2025</small></li>
+          <li><b>Bachelor’s, Computer Science: Embedded Software Engineering</b>ISET Sousse, University of Sousse<br><small>Sep. 2019 – Jun. 2022</small></li>
+          <li><b>Associate’s (BTS), Mechatronics</b>ATFP Sousse<br><small>Sep. 2019 – Jun. 2021</small></li>
+        </ul>
+      </div>
+      <div class="tilt">
+        <h3>Certifications and achievements</h3>
+        <ul>
+          <li><b>Hult Prize, Third Place</b></li>
+          <li><b>Android Development Track</b></li>
+          <li><b>Front-End Development Track</b></li>
+          <li><b>English B1</b> and <b>German</b> certifications</li>
+          <li><b>Robotics Club Trainer</b>Supported robotics learning and projects.</li>
+          <li><b>Enactus Club IoT Trainer</b>Supported IoT learning and projects.</li>
+        </ul>
+      </div>
+      <div class="tilt">
+        <h3>Languages</h3>
+        <ul>
+          <li><b>Arabic</b>C1</li>
+          <li><b>English</b>B2</li>
+          <li><b>French</b>B1</li>
+          <li><b>German</b>A2.1</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Let’s build something that works in the real world</h2>
+    <ul>
+      <li><span>Email</span><a href="mailto:hosam.khadrawi.official@gmail.com">hosam.khadrawi.official@gmail.com</a></li>
+      <li><span>Phone</span><a href="tel:+21626159937">+216 26 159 937</a></li>
+      <!-- Replace the # below with your real profile URLs -->
+      <li><span>LinkedIn</span><a href="#">linkedin.com/in/your-profile</a></li>
+      <li><span>GitHub</span><a href="#">github.com/your-username</a></li>
+      <li><span>Location</span>Sousse, Tunisia</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Hosam Khadrawi</div>
+</footer>
+
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=matchMedia('(pointer:fine)').matches;
+  var mx=0,my=0,sy=0;
+
+  /* 3D network: points on a rotating sphere shell + inner cloud, perspective projected */
+  var c=document.getElementById('magic'),x=c.getContext('2d'),W,H,dpr,pts=[],N;
+  function size(){
+    dpr=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;
+    c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);
+    N=W<700?70:130;pts=[];
+    for(var i=0;i<N;i++){
+      var u=Math.random()*2-1,t=Math.random()*6.2832,r=Math.sqrt(1-u*u);
+      var rad=(i%3?1:.45+Math.random()*.4)*(.7+Math.random()*.3);
+      pts.push({x:r*Math.cos(t)*rad,y:u*rad,z:r*Math.sin(t)*rad});
+    }
+  }
+  size();addEventListener('resize',size);
+  addEventListener('pointermove',function(e){mx=e.clientX/W-.5;my=e.clientY/H-.5},{passive:true});
+  addEventListener('scroll',function(){sy=scrollY},{passive:true});
+
+  var a=0,pr=new Array(N);
+  function frame(){
+    x.clearRect(0,0,W,H);
+    a+=reduce?0:.0025;
+    var ry=a+mx*.9,rx=.35+my*.6+sy*.0003;
+    var cy=Math.cos(ry),sy_=Math.sin(ry),cx=Math.cos(rx),sx=Math.sin(rx);
+    var R=Math.min(W,H)*(W<700?.62:.58),f=3.2;
+    var cxp=W*.5+mx*40,cyp=H*.5+my*30-Math.min(sy,1500)*.04;
+    pr.length=pts.length;
+    for(var i=0;i<pts.length;i++){
+      var p=pts[i],X=p.x*cy-p.z*sy_,Z=p.x*sy_+p.z*cy,Y=p.y*cx-Z*sx;Z=p.y*sx+Z*cx;
+      var s=f/(f-Z);pr[i]={x:cxp+X*R*s,y:cyp+Y*R*s,z:Z,s:s};
+    }
+    x.lineWidth=1;
+    for(var i=0;i<pr.length;i++){
+      for(var j=i+1;j<pr.length;j++){
+        var dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,dz=pts[i].z-pts[j].z,d=dx*dx+dy*dy+dz*dz;
+        if(d<.075){
+          var al=(1-d/.075)*.5*((pr[i].s+pr[j].s)/2-.55);
+          if(al>0){x.strokeStyle='rgba(0,194,255,'+al.toFixed(3)+')';x.beginPath();x.moveTo(pr[i].x,pr[i].y);x.lineTo(pr[j].x,pr[j].y);x.stroke()}
+        }
+      }
+    }
+    for(var i=0;i<pr.length;i++){
+      var q=pr[i],al=Math.max(.15,Math.min(1,(q.z+1)/2+.2));
+      x.fillStyle=(i%5?'rgba(66,217,255,':'rgba(22,119,255,')+al.toFixed(2)+')';
+      x.shadowColor='#00C2FF';x.shadowBlur=q.z>0?10:0;
+      x.beginPath();x.arc(q.x,q.y,1.2+q.s*1.2,0,6.2832);x.fill();
+    }
+    x.shadowBlur=0;
+    if(!reduce)requestAnimationFrame(frame);
+  }
+  frame();
+
+  /* 3D tilt for banner and panels */
+  if(!reduce&&fine){
+    function tilt(el,max){
+      el.addEventListener('pointermove',function(e){
+        var b=el.getBoundingClientRect(),px=(e.clientX-b.left)/b.width-.5,py=(e.clientY-b.top)/b.height-.5;
+        el.style.transform='rotateY('+(px*max)+'deg) rotateX('+(-py*max)+'deg) translateZ(0)';
+      });
+      el.addEventListener('pointerleave',function(){el.style.transform=''});
+    }
+    tilt(document.getElementById('banner'),7);
+    document.querySelectorAll('.tilt').forEach(function(el){tilt(el,5)});
+  }
+})();
+</script>
+</body>
+</html>
