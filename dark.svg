@@ -117,7 +117,7 @@
       </rect>
     </clipPath>
     <text x="522" y="200" fill="#00C2FF"
-      clip-path="url(#phraseClip1)" class="font-mono" font-size="18" font-weight="bold">IoT &amp; Connected Systems</text>
+      clip-path="url(#phraseClip1)" class="font-mono" font-size="18" font-weight="bold"></text>
 
     <clipPath id="phraseClip2">
       <rect x="522" y="180" width="0" height="30">
